@@ -1,0 +1,10 @@
+{
+    "warzywa": ["pomidor", "ogórek", "ziemniak", "marchew", "sałata", "papryka", "cebula", "czosnek", "cukinia", "rzodkiewka"],
+    "owoce": ["banan", "jabłko", "cytryna", "pomarańcza", "winogrona", "borówki", "awokado", "truskawki"],
+    "pieczywo": ["chleb", "bułka", "kajzerka", "bagietka", "rogal", "tortilla", "precel"],
+    "nabiał": ["mleko", "ser", "jogurt", "twaróg", "śmietana", "masło", "jajka", "kefir", "maślanka"],
+    "mięso": ["kurczak", "szynka", "parówki", "wołowina", "indyk", "kabanosy", "boczek", "mielone"],
+    "napoje": ["woda", "sok", "cola", "kawa", "herbata", "piwo", "wino", "energetyk"],
+    "chemia": ["papier", "mydło", "szampon", "proszek", "płyn", "pasta", "gąbka", "worki"],
+    "mrożonki": ["pizza", "frytki", "lody", "warzywa na patelnię", "pyzy"]
+}
