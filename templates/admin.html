@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %}Sorter Zakupów{% endblock %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Admina - Sorter</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <div class="max-w-4xl mx-auto p-6">
+        <div class="flex justify-between items-center mb-8">
+            <h1 class="text-3xl font-bold text-gray-800">🛠️ Zarządzanie Produktami</h1>
+            <a href="/" class="text-blue-600 hover:underline">← Powrót do Sortera</a>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow-sm mb-8">
+            <h2 class="text-lg font-semibold mb-4">Dodaj nowy produkt</h2>
+            <form action="/admin/add" method="post" class="flex flex-wrap gap-4">
+    <input type="text" name="name" placeholder="Nazwa produktu" required
+        class="flex-1 p-2 border rounded-lg">
+    
+    <select name="category_id" required class="p-2 border rounded-lg bg-white">
+        <option value="" disabled selected>Wybierz kategorię</option>
+        {% for cat in categories %}
+            <option value="{{ cat.id }}">{{ cat.name }}</option>
+        {% endfor %}
+    </select>
+
+    <button type="submit" class="bg-green-600 text-white px-6 py-2 rounded-lg font-bold">
+        + Dodaj
+    </button>
+</form>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+            <table class="w-full text-left border-collapse">
+                <thead class="bg-gray-800 text-white">
+                    <tr>
+                        <th class="p-4">ID</th>
+                        <th class="p-4">Nazwa</th>
+                        <th class="p-4">Kategoria</th>
+                        <th class="p-4">Akcja</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200">
+                    {% for product in products %}
+                    <tr class="hover:bg-gray-50">
+                        <td class="p-4 text-gray-500">{{ product.id }}</td>
+                        <td class="p-4 font-medium capitalize">{{ product.name }}</td>
+                        <td class="p-4">
+                            <span class="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs uppercase font-bold">
+                                {{ product.category_name }}
+                            </span>
+                        </td>
+                        <td class="p-4">
+                            <form action="/admin/delete/{{ product.id }}" method="post" onsubmit="return confirm('Czy na pewno usunąć?')">
+                                <button class="text-red-600 hover:text-red-800 font-semibold">Usuń</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% if not products %}
+            <p class="p-8 text-center text-gray-500 italic">Brak produktów w bazie. Dodaj pierwszy!</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
+
+{% endblock %}

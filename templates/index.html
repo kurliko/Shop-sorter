@@ -1,43 +1,33 @@
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kaufland Sorter</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-50 min-h-screen">
-    <div class="max-w-md mx-auto p-6">
-        <header class="text-center mb-8">
-            <h1 class="text-3xl font-bold text-red-600">🛒 Sorter Zakupów</h1>
-            <p class="text-gray-500">Kaufland Edition</p>
-        </header>
+{% extends "base.html" %}
 
-        <div class="bg-white p-6 rounded-xl shadow-sm mb-6">
-            <form action="/sort" method="post">
-                <label class="block text-sm font-medium text-gray-700 mb-2">Wpisz listę (np. chleb, mleko, pomidor):</label>
-                <textarea name="shopping_list" rows="4" 
-                    class="w-full p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-red-500 focus:outline-none mb-4"
-                    placeholder="Wpisz produkty..."></textarea>
-                <button type="submit" class="w-full bg-red-600 text-white font-semibold py-3 rounded-lg hover:bg-red-700 transition">
-                    Sortuj trasę
-                </button>
-            </form>
-        </div>
+{% block title %}Sorter Zakupów{% endblock %}
 
-        {% if items %}
-        <div class="bg-white p-6 rounded-xl shadow-sm">
-            <h2 class="text-lg font-bold mb-4 border-b pb-2">Twoja trasa:</h2>
-            <ul class="space-y-3">
-                {% for item in items %}
-                <li class="flex items-center gap-3 p-2 bg-gray-50 rounded">
-                    <input type="checkbox" class="w-5 h-5 rounded border-gray-300 text-red-600">
-                    <span class="capitalize">{{ item }}</span>
-                </li>
-                {% endfor %}
-            </ul>
-        </div>
-        {% endif %}
+{% block content %}
+<div class="max-w-md mx-auto">
+    <div class="bg-white p-6 rounded-xl shadow-sm mb-6">
+        <form action="/sort" method="post">
+            <label class="block text-sm font-medium text-gray-700 mb-2">Wklej listę zakupów:</label>
+            <textarea name="shopping_list" rows="5" 
+                class="w-full p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-red-500 outline-none mb-4"
+                placeholder="chleb, masło, pomidory..."></textarea>
+            <button type="submit" class="w-full bg-red-600 text-white font-bold py-3 rounded-lg hover:bg-red-700 transition">
+                Generuj trasę
+            </button>
+        </form>
     </div>
-</body>
-</html>
+
+    {% if items %}
+    <div class="bg-white p-6 rounded-xl shadow-sm">
+        <h2 class="text-lg font-bold mb-4 border-b pb-2 text-gray-800">Twoja trasa po sklepie:</h2>
+        <ul class="space-y-3">
+            {% for item in items %}
+            <li class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg border-l-4 border-red-500">
+                <input type="checkbox" class="w-5 h-5 rounded text-red-600">
+                <span class="capitalize text-gray-700">{{ item }}</span>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

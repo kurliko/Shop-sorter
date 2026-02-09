@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Sorter Kaufland{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <nav class="bg-red-600 text-white shadow-lg mb-6">
+        <div class="max-w-4xl mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="/" class="text-xl font-bold flex items-center gap-2">
+                <span>🛒</span> Sorter Kaufland
+            </a>
+            <div class="space-x-4">
+                <a href="/" class="hover:underline text-sm font-medium">Sorter</a>
+                <a href="/admin/products" class="bg-white text-red-600 px-3 py-1 rounded-md text-sm font-bold hover:bg-gray-100 transition">
+                    Panel Admina
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-4xl mx-auto px-4">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="text-center py-8 text-black-400 text-xs">
+        &copy; 2026 Projekt Sorter - FastAPI & PostgreSQL
+    </footer>
+</body>
+</html>
